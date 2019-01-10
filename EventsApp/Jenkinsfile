@@ -9,20 +9,20 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'mvn -f ../pom.xml compile'
+                sh 'mvn -f ./pom.xml compile'
             }
             }
 
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'mvn -f ../pom.xml test'
+                sh 'mvn -f ./pom.xml test'
             }
         }
         stage('Package') {
             steps {
                 echo 'Packaging....'
-                sh 'mvn -f ../pom.xml -DskipTests package'
+                sh 'mvn -f ./pom.xml -DskipTests package'
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
