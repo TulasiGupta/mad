@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    tools {
+      maven 'maven 3.3.9',
+      nodejs 'NodeJS 4.8.6'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                sh 'npm install'
+                sh 'mvn -f EventsApp/pom.xml compile'
+            }
+            }
+
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                sh 'npm test'
+                sh 'mvn -f EventsApp/pom.xml test'
+            }
+        }
+        stage('Package') {
+            steps {
+                echo 'Packaging....'
+                sh 'mvn -f EventsApp/pom.xml -DskipTests package'
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+    }
+}
