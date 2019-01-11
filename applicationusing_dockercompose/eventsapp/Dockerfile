@@ -1,6 +1,6 @@
 FROM maven
 
-WORKDIR /opt/eventsapp
+WORKDIR /opt/applicationusing_dockercompose/eventsapp
 
 COPY . .
 
