@@ -23,8 +23,8 @@ services:
 
   mysql8013:
     image: mysql:8.0.13
-    ports:
-      - 33060:3306
+    #ports:
+    #  - 33060:3306
     networks:
       - defaultdriver
     environment:
